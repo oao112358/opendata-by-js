@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+　<head>
+　  <title>TEST</title>
+　</head>
+　<body>Hello World!!</body>
+</html>
+
+<!-- <script type="text/javascript" src="cordova.js"></script> -->
+<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript">  
+  $(document).ready(function() {
+    var workAPI = "https://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000077-002";
+    var epaAPI = "http://opendata.epa.gov.tw/ws/Data/UV/?$orderby=PublishAgency&$skip=0&$top=1000&format=json&callback=?";
+    var defaultCountry = '高雄市';
+    
+    $.getJSON( epaAPI, function(){
+      format: "json"
+    }).done(function(data) {
+      $.each(data, function(i, item) {
+        if(item.County == defaultCountry) {
+          console.log(item);
+        }
+      });
+    });
+  })();
+</script>
